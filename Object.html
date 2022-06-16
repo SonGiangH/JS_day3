@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Basic Homework</title>
+</head>
+<body>
+    <script>
+        let dog = {
+            name: "Tony",
+            age: 10,
+            bread: "pitbull",
+            gender: "male",
+            color: "black",
+            legs: 4,
+            "favorite food": "milk",
+            eat : function() {
+                console.log(`${this.name} is eating ${this["favorite food"]}, yum yum...`)
+            },
+            run : function() {
+                console.log(`${this.name} is running on ${this.legs} legs...`)
+            },
+            bark : function() {
+                console.log(`woof, woof, woof,...`)
+            }
+        }
+
+        //  in dog ra console
+        function printDog(dog) {
+            for (let k in dog) {
+                console.log(dog[k]);
+            }
+        }
+
+        printDog(dog)
+
+        // in name ra console
+        console.log(`${dog.name}`)
+
+        // in favorite food ra console
+        console.log(`${dog["favorite food"]}`)
+
+        // Viết câu lệnh để thay đổi color thành Brown
+
+        dog.color = "brown";
+
+        // Viết câu lệnh để tăng age thêm 2 tuổi
+
+        dog.age += 2;
+
+        // Viết câu lệnh gọi phương thức eat(), run()
+        dog.eat();
+        dog.run();
+
+        // Sử dụng vòng lặp để in ra tất cả tên thuộc tính (key) ra console
+        for ( let key in dog) {
+            console.log (key);
+        }
+
+        // Sử dụng vòng lặp để in ra tất cả giá trị (value) ra console
+        for ( let key in dog ) {
+            console.log (dog[key]);
+        }
+
+        // Viết câu lệnh để thêm một thuộc tính isCrazy vào dog với giá trị boolean tùy ý
+        dog.isCrazy = true;
+        
+        /* Viết câu lệnh để thêm một phương thức crazy() vào dog, kiểm tra nếu isCrazy là false 
+        thì in ra theo mẫu {name} is not crazy, nếu isCrazy là true thì sử 
+        dụng vòng lặp để gọi 2 phương thức run() và bark() 5 lần (con chó bị điên), 
+        kết quả sẽ in ra console dạng {name} is running on {legs} legs ... Woof woof woof ... 
+        {name} is running ... Woof woof woof */
+
+        dog.crazy = function () {
+            if (this.isCrazy) {
+                for (let i =0; i < 5; i++) {
+                    this.run();
+                    this.bark();
+                }
+            } else console.log (`${this.name} is not crazy`)
+        }
+
+        dog.crazy();
+
+        // Viết câu lệnh đảo ngược giá trị của isCrazy
+        dog.isCrazy = false;
+
+        // Viết câu lệnh gọi phương thức crazy()
+        dog.crazy();
+
+        // Viết câu lệnh xóa isCrazy khỏi dog
+        delete dog.isCrazy;
+        console.log(dog)
+
+        // Viết câu lệnh gọi phương thức crazy()
+        // xoá phương thức isCrazy , nên nó sẽ rơi vào trường hợp false, nên vẫn hiện ra kết quả khi
+        // trường hợp isCrazy = false.
+        dog.crazy();
+
+
+        console.log("----------------------------------------------------------------")
+        // Sử dụng vòng lặp để in ra tất cả thuộc tính và giá trị tương ứng (không phải phương thức) trong dog ra console 
+
+        for ( let key in dog ) {
+            if (typeof(dog[key]) !="function") {
+                console.log(`${dog[key]}`);
+            }         
+        }
+
+        // Viết câu lệnh khai báo một biến mới clone và gán giá trị của dog cho clone
+        let clone = dog;
+
+        // Viết câu lệnh in clone và dog ra console, chú ý kết quả
+        console.log(dog);
+        console.log(clone);
+
+        // Viết câu lệnh chỉnh sửa name trong clone thành một tên khác bất kỳ
+        clone.name = "Sam";
+        console.log(dog);           // name của dog cũng thay đổi do 2 thằng clone và dog cùng trỏ đến 1 giá trị, nên thay đổi clone name nên dog name cũng thay đổi
+        console.log(clone);        
+
+        // Viết câu lệnh khai báo một object mới copy rỗng {}
+        let copy = {};
+
+        // Sử dụng vòng lặp để sao chép từng thông tin (cả thuộc tính và phương thức) trong dog sang copy
+        for ( let key in dog) {
+            copy[key] = dog[key];
+        }
+        console.log(`Copy :`)
+        console.log(copy)
+
+        // Viết câu lệnh chỉnh sửa name trong copy thành tên khác bất kỳ
+        copy.name = "Osaka";
+        console.log(`Copy :`)
+        console.log(copy);
+        console.log(dog)
+
+    </script>
+</body>
+</html>
